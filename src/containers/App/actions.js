@@ -1,12 +1,12 @@
 import {
-  FETCH_APP_VERSION,
+  HELLO_WORLD,
 } from './constants';
 
-export function appVersion(params) {
+export function helloword(params) {
   return ({ fetch }) => ({
-    type: FETCH_APP_VERSION,
+    type: HELLO_WORLD,
     payload: {
-      promise: fetch().appVersion({ params })
+      promise: fetch().helloword({ params })
         .then(res => res.body)
         .catch(err => {
           throw err;

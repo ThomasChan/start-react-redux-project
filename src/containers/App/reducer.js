@@ -1,17 +1,17 @@
 import { fromJS } from 'immutable';
 import {
-  FETCH_APP_VERSION_SUCCESS,
+  HELLO_WORLD_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
-  appVersion: {},
+  helloword: {},
 });
 
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_APP_VERSION_SUCCESS: {
-      const version = action.payload;
-      return state.set('appVersion', fromJS(version && version.data || {}));
+    case HELLO_WORLD_SUCCESS: {
+      const response = action.payload;
+      return state.set('helloword', fromJS(response || {}));
     }
   }
   return state;

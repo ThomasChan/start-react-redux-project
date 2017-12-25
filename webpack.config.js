@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const OfflinePlugin = require('offline-plugin');
-const setup = require('./dev_server');
 const conf = require('./src/config');
 const pkg = require('./package.json');
 const p = process.env.NODE_ENV === 'production';
@@ -19,11 +18,11 @@ const extractLess = new ExtractTextPlugin({
 });
 
 const entries = {
-  promoter: p ? [
+  entry: p ? [
     './index.js',
   ] : [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${process.env.PORT || 9981}`,
+    `webpack-dev-server/client?http://localhost:${process.env.PORT || 4686}`,
     'webpack/hot/only-dev-server',
     './index.js',
   ],
@@ -33,7 +32,7 @@ const commonPlugins = [
   extractLess,
   new HtmlWebpackPlugin({
     title: `${conf.name} ${conf.subname}`,
-    chunks: ['promoter'],
+    chunks: ['entry'],
     template: 'index.ejs',
     filename: 'index.html',
     minify: {
@@ -196,11 +195,10 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: process.env.PORT || 9981,
+    port: process.env.PORT || 4686,
     hot: true,
     inline: true,
     disableHostCheck: true,
-    setup: app => setup(app),
     proxy: {
       "/api": {
         target: conf.api.origin,

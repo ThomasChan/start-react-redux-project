@@ -9,7 +9,7 @@ const apis = {
   ...app,
 };
 
-export default class TalkGene {
+export default class RestAPI {
 
   constructor(conf) {
     const hasSlash = conf && conf.api && conf.api.split('').slice(-1)[0] === '/';
@@ -27,7 +27,7 @@ export default class TalkGene {
             'Accept-Language': (localStorage.getItem('locale') || 'zh-CN'),
             // 'X-Request-Domain': window.origin,
           },
-          withCredentials: true,
+          // withCredentials: true,
         },
         // post: {
         //   headers: {

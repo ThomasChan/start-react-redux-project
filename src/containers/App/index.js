@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import React, { PureComponent } from 'react';
 
 import toJS from '../../libs/toJS';
-import { appVersion } from './actions';
+import { helloword } from './actions';
 
 import './index.less';
 import '../../../font/fontello.less';
@@ -38,18 +38,18 @@ class App extends PureComponent {
       document.body.classList.add('windows');
     }
     const { actions } = this.props;
-    actions.appVersion(233);
+    actions.helloword(233);
   }
 
   render() {
     const { locale } = this.state;
-    const { t, version } = this.props;
+    const { t, response } = this.props;
 
     return (
       <div>
         <h1>{t('app.helloTalkGene')}</h1>
         <h1>{locale}</h1>
-        <pre>{JSON.stringify(version, null, "\t")}</pre>
+        <pre>{JSON.stringify(response, null, "\t")}</pre>
       </div>
     );
   }
@@ -58,9 +58,9 @@ class App extends PureComponent {
 
 export default translate()(connect((state, ownProps) => ({
   children: ownProps.children,
-  version: state.getIn(['app', 'appVersion']),
+  response: state.getIn(['app', 'helloword']),
 }), dispatch => ({
   actions: {
-    appVersion: bindActionCreators(appVersion, dispatch),
+    helloword: bindActionCreators(helloword, dispatch),
   },
 }))(toJS(App)));

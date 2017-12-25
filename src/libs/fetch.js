@@ -1,4 +1,4 @@
-import TalkGene from './talkgene';
+import TalkGene from './rest';
 
 const fetch = config => new TalkGene(config);
 

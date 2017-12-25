@@ -1,9 +1,9 @@
 export default {
 
   // 在这儿定义 API 地址、参数和方法
-  appVersion: {
+  helloword: {
     method: 'get',
-    url: 'appVersion/{{params}}',
+    url: 'helloword/{{params}}',
   },
 
 };

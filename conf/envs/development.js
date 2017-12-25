@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'Talk',
-  subname: 'Gene',
-  footer: 'Copyright © 2017 talkgene.com',
+  name: 'Start',
+  subname: 'React & Redux',
+  footer: 'Copyright © 2017 chenjunhao.cn',
   debug: true,
   publicPath: '/',
   api: {

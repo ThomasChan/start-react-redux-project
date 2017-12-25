@@ -1,6 +1,6 @@
 {
   "app": {
-    "helloTalkGene": "你好！小基因"
+    "helloTalkGene": "Hello world!"
   },
   "operations": {
     "joyride": {
