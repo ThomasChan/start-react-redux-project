@@ -9,7 +9,6 @@ import toJS from '../../libs/toJS';
 import { helloword } from './actions';
 
 import './index.less';
-import '../../../font/fontello.less';
 
 class App extends PureComponent {
 

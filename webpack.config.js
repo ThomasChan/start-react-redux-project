@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const OfflinePlugin = require('offline-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const conf = require('./src/config');
 const pkg = require('./package.json');
 const p = process.env.NODE_ENV === 'production';
@@ -22,7 +23,7 @@ const entries = {
     './index.js',
   ] : [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${process.env.PORT || 4686}`,
+    `webpack-dev-server/client?http://${process.env.HOST || 'localhost'}:${process.env.PORT || 4686}`,
     'webpack/hot/only-dev-server',
     './index.js',
   ],
@@ -55,6 +56,13 @@ const commonPlugins = [
 const devPlugins = commonPlugins.concat([
   new webpack.NoEmitOnErrorsPlugin(),
   new webpack.HotModuleReplacementPlugin(),
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
 ]);
 const prdPlugins = commonPlugins.concat([
   new webpack.ExtendedAPIPlugin(),
@@ -194,7 +202,7 @@ module.exports = {
     },
   },
   devServer: {
-    host: '0.0.0.0',
+    host: process.env.HOST || '0.0.0.0',
     port: process.env.PORT || 4686,
     hot: true,
     inline: true,

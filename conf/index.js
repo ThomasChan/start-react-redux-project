@@ -20,7 +20,7 @@ co(function*() {
     conf = _.merge({}, conf, {
       proj_dir: process.env.PROJ_DIR || work_dir,
       rel_dir: process.env.REL_DIR || work_dir,
-      api_provider: process.env.API_ADDR || 'http://localhost:3003',
+      api_provider: process.env.API_ADDR || `http://${process.env.HOST || 'localhost'}:3003`,
     });
 
     function render(fileIn, fileOut) {
